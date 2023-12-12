@@ -55,19 +55,34 @@ The third intermediate file was generated during the second step of the analysis
 
 The fourth intermediate file was generated during the third step of the analysis - [Smoke Estimate Generation and Modeling](https://github.com/TanushreeYandra/data-512-final-project/blob/main/Analysis/Wildfires_Analysis_Smoke_Estimates_and_Modeling.ipynb). This file is:
 
-1. 'Yearly_Smoke_Estimate.csv': This CSV file was generated after creating the smoke estimate.
+1. 'Yearly_Smoke_Estimate.csv': This CSV file was generated after creating the smoke estimate and taking a cumulative value of all wildfire instances on an yearly basis. Since the “smoke emitted” was being analyzed, it made more sense if a cumulative of the smoke estimate was taken instead of average. This would take the large number of wildfires in recent times into account and not provide any biased results. The dataset contains 57 rows and two columns - 'Fire_Year' which is a datetime object, and the 'Smoke_Estimate' which is a float value. This dataset covers the AQI values for the period of 1963 through 2020.
 
-All these four intermediate data files have been stored in the [Results](https://github.com/TanushreeYandra/data-512-final-project/tree/main/Results) directory.
+All these four intermediate data files have been stored in the [Intermediate Data Files](https://github.com/TanushreeYandra/data-512-final-project/tree/main/Results/Intermediate%20Data%20Files) section of the [Results](https://github.com/TanushreeYandra/data-512-final-project/tree/main/Results) directory.
 
 ### Known Issues or Special Considerations with the Data:
 
-It is important to note that both the datasets - Wildfires and AQI data have been created using multiple valid assumptions. The AQI data for instance was calculated for the ‘fire season’ every year which lasts from May 1st to October 31st. For every fire season, the maximum AQI was chosen as the AQI estimate for that year. Since this analysis was concerned about the potential extreme impacts of wildfires on air quality and how high pollution events correlate with smoke estimates, considering the maximum AQI for each year felt suitable.
+While the study was conducted with appropriate assumptions and keeping human-centered data science principles in mind, there are a few considerations with the data that are important to know:
+
+1. It is important to note that the wildfires dataset may not be the most accurate especially for wildfires in the earlier years due to lack of proper reporting measures. Wildfires might have been underreported or not systematically documented in earlier periods, especially in remote or less populated areas, leading to incomplete or inaccurate datasets.
+
+2. Since fires are irregularly shaped, defining the notion of ‘distance’ of the fire from Twin Falls, Idaho was challenging. For example, should the distance be calculated from the closest point of the fire perimeter or the centroid of the region? For this study, the average distance of all perimeter points was taken because for some very large fires, including just the shortest distance seemed biased. However, this is an assumption that can affect the ultimate results since the ‘Distance’ variable factors into the final smoke estimate.
+
+3. The wildfires dataset had the data for both prescribed fires and wildfires. A prescribed fire is a planned fire intentionally ignited by park managers to meet management objectives whereas a wildfire is unplanned caused by natural causes, by accidental (or arson-caused) human ignitions, or by an escaped prescribed fire. While prescribed fires are intentional and usually in control, they still do contribute to air pollution. For this analysis, it was assumed that prescribed fires and wildfires contribute to the same amount of pollution for a given land within the same area. This assumption of equal impact could have led to inaccurate estimations of pollution levels and can affect the overall results.
+
+4. Overlapping fires were removed from the dataset since there is another fire already existing in the database with more than 10% overlap. While the overlap flag may or may not be correct, it is assumed that another row pertaining to the same fire exists for those fires that are flagged. This assumption however holds to be valid, only if the dataset was accurate in terms of documenting the overlapping fires. There is a possibility of overlapping fires still existing in the dataset or “non-overlapping” fires being removed.
+
+5. The AQI data obtained from the US EPA had a few missing values. While these values were dealt by taking the rolling average of the previous five years which makes for a reasonable assumption, it still does create a caveat.
+
+6. The data available for the four socio-economic indicators was widely inconsistent in terms of the timelines for which it was available. While some indicators had a longer period of data, the income inequality dataset had data only for 10 years. Thus, generalizing the relation between such indicators with the smoke estimate was difficult. However, for the scope of this assignment, this factor was neglected. Any correlation existing, even for a 10 year period, was taken into account.
 
 ### Results
 
-Three visualizations were generated which have been stored in the [Results](https://github.com/TanushreeYandra/data-512-projectpart1/tree/main/Results) directory:
+Eight visualizations were generated which have been stored in the [Visualizations](https://github.com/TanushreeYandra/data-512-final-project/tree/main/Results/Visualizations) section of the [Results](https://github.com/TanushreeYandra/data-512-projectpart1/tree/main/Results) directory. These are briefly explained below:
+
 1. Histogram of the distribution of wildfires by their distance from Twin Falls, Idaho
+  
 2. Line graph of the total acres burned by wildfires every year
+
 3. Time series graph containing the cumulative smoke estimate and the maximum AQI estimate for every year
 
 ### Research Implications:
