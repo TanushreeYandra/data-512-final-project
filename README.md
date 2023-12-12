@@ -21,7 +21,7 @@ The final goal is to equip policy makers, city managers, city councils, or other
 
 ### Data Descriptions
 
-This analysis used five pre-existing datasets and generated an additional dataset using an API. The five pre-existing datasets are available in the [Data folder]() of this repository.
+This analysis used five pre-existing datasets (wildfires, GDP, unemployment rate, personal income per capita, and income inequality)and generated an additional dataset (Air Quality Index)using an API. The five pre-existing datasets are available in the [Data folder](https://github.com/TanushreeYandra/data-512-final-project/tree/main/Data) of this repository.
 
 The first dataset is the [Combined Wildland Fire Datasets for the United States and certain territories, 1800s-Present (combined wildland fire polygons)](https://www.sciencebase.gov/catalog/item/61aa537dd34eb622f699df81) dataset which was used to retrieve the historical data of wildfires. This dataset was collected and aggregated by the US Geological Survey, and is relatively well documented. Fire polygons in this dataset are available in ArcGIS and GeoJSON formats. The dataset had multiple features about the wildfire including a unqiue ID, fire year, area of fire, fire name, fire type, coordinates of the fire perimeter, etc. 
 
@@ -41,16 +41,23 @@ Air Quality Data was needed to evaluate the performance of the smoke estimate cr
 
 The US EPA was created in the early 1970's. The EPA reports that they only started broad based monitoring with standardized quality assurance procedures in the 1980's. Many counties will have data starting somewhere between 1983 and 1988. However, some counties still do not have any air quality monitoring stations. The API helps resolve this by providing calls to search for monitoring stations and data using either station ids, or a county designation or a geographic bounding box. Some [additional information on the Air Quality System can be found in the EPA FAQ](https://www.epa.gov/outdoor-air-quality-data/frequent-questions-about-airdata) on the system.
 
-### Intermediate Data Files: 
+### Intermediate Data Files Documentation: 
 
-In this study, three intermediate data files were generated. Two data files were generated in the first step - Data Retrieval. These are:
-1. 'final_wildfire_data.json': This is the JSON file that has the data of 84319 wildfire instances that are within 1250 miles of Twin Falls, Idaho between the years 1963 and 2020.
-2. 'Yearly_AQI_Data.csv': This CSV file contains the maximum AQI data for every fire season (May 1st to October 31st) on an yearly basis for Twin Falls, Idaho.
+In this study, four intermediate data files were generated. Two data files were generated in the first step - [Data Retrieval](https://github.com/TanushreeYandra/data-512-final-project/blob/main/Analysis/Wildfires_Analysis_Data_Retrieval.ipynb). These are:
 
-The third intermediate file was generated during the second step of the analysis - Data Preprocessing. This file is:
-1. 'Wildlife_Data_Processed.csv': This CSV file contains the cleaned wildfires dataset. This dataset was created by removing irrelevant columns, filtering out overlapping wildfires, and ignoring circular fires of size greater than 1 acre from the 'final_wildfire_data.json' file. The final dataset had 72608 rows and 9 columns.
+1. 'final_wildfire_data.json': This dataset is in the format of a JSON file which was extracted from the original [Wildland Fires Dataset](https://github.com/TanushreeYandra/data-512-final-project/blob/main/Data/USGS_Wildland_Fire_Combined_Dataset.json.zip) and has the data of 84319 wildfire instances that are within 1250 miles of Twin Falls, Idaho between the years 1963 and 2020. This dataset has a total of 31 columns some of them being a unqiue ID, fire year, area of fire, fire name, fire type, coordinates of the fire perimeter, etc.
+  
+2. 'Yearly_AQI_Data.csv': This CSV file was retrieved from the data obtained during the API call, and contains the maximum AQI data for every fire season (May 1st to October 31st) on an yearly basis for Twin Falls, Idaho. The dataset contains 35 rows and two columns - 'Year' which is an integer, and the AQI which is a float value. This data covers the AQI values for the period of 1986 through 2020.
 
-All these three intermediate data files have been stored in the [Results](https://github.com/TanushreeYandra/data-512-projectpart1/tree/main/Results) directory.
+The third intermediate file was generated during the second step of the analysis - [Data Preprocessing](https://github.com/TanushreeYandra/data-512-final-project/blob/main/Analysis/Wildfires_Analysis_Data_Preprocessing.ipynb). This file is:
+
+1. 'Wildlife_Data_Processed.csv': This CSV file contains the processed wildfires dataset. It was created by removing irrelevant columns, filtering out overlapping wildfires, and ignoring circular fires of size greater than 1 acre from the [final_wildfire_data.json](https://github.com/TanushreeYandra/data-512-final-project/blob/main/Results/final_wildfire_data.json.zip) file. The final dataset had 72608 wildfire instances and the number of columns were brought down to 9 from the initial 31. This dataset contained features including 'USGS_Assigned_ID', 'Assigned_Fire_Type', 'Fire_Year', 'GIS_Acres', 'Listed_Fire_Names', 'Circleness_Scale', 'Shape_Length', 'Shape_Area', and 'Distance'.
+
+The fourth intermediate file was generated during the third step of the analysis - [Smoke Estimate Generation and Modeling](https://github.com/TanushreeYandra/data-512-final-project/blob/main/Analysis/Wildfires_Analysis_Smoke_Estimates_and_Modeling.ipynb). This file is:
+
+1. 'Yearly_Smoke_Estimate.csv': This CSV file was generated after creating the smoke estimate.
+
+All these four intermediate data files have been stored in the [Results](https://github.com/TanushreeYandra/data-512-final-project/tree/main/Results) directory.
 
 ### Known Issues or Special Considerations with the Data:
 
