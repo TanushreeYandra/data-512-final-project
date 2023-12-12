@@ -41,6 +41,26 @@ Air Quality Data was needed to evaluate the performance of the smoke estimate cr
 
 The US EPA was created in the early 1970's. The EPA reports that they only started broad based monitoring with standardized quality assurance procedures in the 1980's. Many counties will have data starting somewhere between 1983 and 1988. However, some counties still do not have any air quality monitoring stations. The API helps resolve this by providing calls to search for monitoring stations and data using either station ids, or a county designation or a geographic bounding box. Some [additional information on the Air Quality System can be found in the EPA FAQ](https://www.epa.gov/outdoor-air-quality-data/frequent-questions-about-airdata) on the system.
 
+### Model Documentation:
+
+To model and generate predictions for the smoke estimate, unemployment rate, and income inequality for the years 2021 through 2049, the [Seasonal AutoRegressive Integrated Moving Average with eXogenous regressors (SARIMAX)](https://www.statsmodels.org/dev/generated/statsmodels.tsa.statespace.sarimax.SARIMAX.html) model was used. It is a part of the [statsmodels](https://www.statsmodels.org/stable/index.html) library, used for time series analysis and forecasting. The SARIMAX model takes several parameters:
+
+1. endog: This represents the endogenous variable, the time series data you want to model and forecast.
+
+2. order (p, d, q): These three parameters correspond to the autoregressive (p), differencing (d), and moving average (q) components of the model, similar to the ARIMA model.
+
+3. seasonal_order (P, D, Q, s): The seasonal components of the model, denoted by uppercase P, D, and Q. The 's' parameter defines the seasonal length.
+
+4. exog: This represents exogenous variables, additional independent variables that can impact the endogenous variable. This is an optional parameter.
+
+5. trend: Specifies the trend component in the model. Options include 'n' for no trend, 'c' for a constant term, 't' for a linear trend, and 'ct' for both.
+
+6. enforce_stationarity: Whether to enforce stationarity in the model. If True, it ensures coefficients are within the stationarity region.
+
+7. enforce_invertibility: Similar to stationarity, this parameter enforces invertibility to ensure a finite number of coefficients.
+
+The model was chosen since it smoothes out short-term fluctuations, making underlying trends more apparent. It captured the ups and downs of the time-series data really well. This model was also easier to implement and interpret, making it feasible for this analysis. Moreover, it can handle seasonal patterns in data, making it suitable for time series with recurring patterns at fixed intervals. SARIMAX combines autoregressive (AR) and moving average (MA) components to capture dependencies between observations and the impact of previous error terms, which can be vital in time series analysis. It includes differencing to make a time series stationary, which can help stabilize variance and make data more amenable to modeling. Thus, this model is effective for making future predictions based on historical patterns and other factors.
+
 ### Intermediate Data Files Documentation: 
 
 In this study, four intermediate data files were generated. Two data files were generated in the first step - [Data Retrieval](https://github.com/TanushreeYandra/data-512-final-project/blob/main/Analysis/Wildfires_Analysis_Data_Retrieval.ipynb). These are:
