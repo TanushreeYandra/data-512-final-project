@@ -79,11 +79,21 @@ While the study was conducted with appropriate assumptions and keeping human-cen
 
 Eight visualizations were generated which have been stored in the [Visualizations](https://github.com/TanushreeYandra/data-512-final-project/tree/main/Results/Visualizations) section of the [Results](https://github.com/TanushreeYandra/data-512-projectpart1/tree/main/Results) directory. These are briefly explained below:
 
-1. Histogram of the distribution of wildfires by their distance from Twin Falls, Idaho
+1. 'Histogram_of_Total_Wildfires_by_Distance': This shows the distribution of the wildfires as a histogram for the total wildfires occurring every 50 miles distance from Twin Falls, Idaho.
   
-2. Line graph of the total acres burned by wildfires every year
+2. 'Total_Acres_Burned_Every_Year': This represents the time series graph of the total acres burned by wildfires per year for the fires occurring within 1250 miles of Twin Falls, Idaho from 1963 to 2020.
 
-3. Time series graph containing the cumulative smoke estimate and the maximum AQI estimate for every year
+3. 'Time_Series_Smoke_Estimate_and_AQI': This shows the time series graph containing the yearly cumulative smoke estimate and the yearly maximum AQI estimate for Twin Falls, Idaho. It allows the viewer to make an effective comparison between the two line plots and see how correlated they are.
+
+4. 'Smoke_Estimate_and_GDP': This plot shows the time series graph for the smoke estimate and the GDP along with their trendlines. While the wildfires data was available for the period 1963-2020, the GDP data was available only from 2001 to 2021. Thus, the intersection of the two time periods was considered while plotting the graph, i.e. 2001 through 2020.
+
+5. 'Smoke_Estimate_and_Unemployment': This is a time series graph for the smoke estimate and the unemployment rate along with their trendlines. While the wildfires data was available for the period 1963-2020, the unemployment data was available only from 1990 to 2023. Thus, the intersection of the two time periods was considered while plotting the graph, i.e. 1990 through 2020.
+
+6. 'Smoke_Estimate_and_Personal_Income': This shows the time series graph for the smoke estimate and the personal income per capita (in thousands) along with their trendlines. While the wildfires data was available for the period 1963-2020, the personal income per capita data was available from 1969 to 2022. Thus, the intersection of the two time periods was considered while plotting the graph, i.e. 1969 through 2020.
+
+7. 'Smoke_Estimate_and_Income_Inequality': This shows the time series graph for the smoke estimate and the income inequality along with their trendlines. While the wildfires data was available for the period 1963-2020, the income inequality data was available from 2010 to 2021. Thus, the intersection of the two time periods was considered while plotting the above graph, i.e. 2010 through 2020.
+
+8. 'Final_Predictions': This shows the time series graph for the predicted values of smoke estimate, unemployment rate, and the income inequality along with their trendlines for the years 2021 through 2049. Since a reasonably high to strong correlation was observed for the indicators - unemployment rate and income inequality, predictions were generated for these variables for the years 2021 through 2049. These predictions were then plotted against the predicted smoke estimate to understand the future impact of wildfires on Twin Falls’ socio-economy.
 
 ### Research Implications:
 
